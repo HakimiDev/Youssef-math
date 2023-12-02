@@ -20,6 +20,8 @@ const eq = ref(null);
 const time = ref(null);
 const result = ref('');
 
+const score = ref(0);
+
 const handelReady = () => {
   if (isReady.value) return;
   isReady.value = true;
@@ -30,6 +32,7 @@ onMounted(() => {
   setInterval(() => {
     if (time.value === null) return;
     if (time.value <= 0) {
+      score.value--;
       start();
       return;
     }
@@ -102,11 +105,9 @@ function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const score = ref(0);
 
 const handleSubmit = () => {
     const rr = eval(eq.value);
-    console.log(rr);
     if (result.value.trim() == rr) {
         score.value++;
     } else {
